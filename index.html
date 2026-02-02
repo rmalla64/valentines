@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentines?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d859d8 0%, #e41919 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-family: Apple Chancery;
+            font-style: italic; 
+        }
+        
+        button {
+            padding: 15px 40px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .snoopy {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+        <img src="snoopy.gif" alt="snoopy" class="snoopy">
+        <button class="yes-btn">Yes</button>
+        <button class="no-btn">No</button>
+    </div>
+    <script>
+        document.querySelector('.yes-btn').addEventListener('click', function() {
+            const img = document.querySelector('.snoopy');
+            const heading = document.querySelector('.container h1');
+            const yesBtn = document.querySelector('.yes-btn');
+            const noBtn = document.querySelector('.no-btn');
+            if (img) {
+                img.src = 'snoopy-happy-dance.gif';
+                img.alt = 'snoopy dancing';
+                img.style.maxWidth = '300px';
+            }
+            if (heading) {
+                heading.textContent = 'Yipeeeeee!!';
+            }
+            if (yesBtn) yesBtn.style.display = 'none';
+            if (noBtn) noBtn.style.display = 'none';
+        });
+        (function() {
+            const noBtn = document.querySelector('.no-btn');
+            const img = document.querySelector('.snoopy');
+            let noClicks = 0;
+            if (noBtn) {
+                noBtn.addEventListener('click', function() {
+                    noClicks++;
+                    if (noClicks === 1) {
+                        noBtn.textContent = 'Are you sure?';
+                    } else {
+                        if (noClicks === 3) {
+                        img.src = 'snoopy-rain.gif';
+                        img.alt = 'sad snoopy';
+                    }
+                        const reallys = ' really'.repeat(noClicks - 1);
+                        noBtn.textContent = 'Are you' + reallys + ' sure?';
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
